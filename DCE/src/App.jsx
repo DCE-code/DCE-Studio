@@ -592,8 +592,9 @@ Seeking opportunities to contribute as a Frontend Developer, React Developer, or
 ## CONTACT
 
 Email: [davchristian293@gmail.com]
+Phone: [+234 7015781293]
 Location: Nigeria
-Portfolio: [https://dce-studio.netlify.app]
+Portfolio: [https://dce-studio-bdvn.vercel.app]
 GitHub: https://github.com/DCE-code
 `;
     const blob = new Blob([cvContent], { type: "text/markdown;charset=utf-8" });
