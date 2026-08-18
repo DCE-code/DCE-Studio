@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
 import * as THREE from "three";
-// import { div } from 'three/src/nodes/math/OperatorNode.js';
 
 
 
@@ -10,7 +9,6 @@ import * as THREE from "three";
     DATA
 ========================================================= */
 const NAV_LINKS = [
-  // { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
@@ -27,12 +25,9 @@ const SKILLS = [
   "JavaScript (ES6+)",
   "Python",
   "React.js",
-  "Next.js",
   "Tailwind CSS",
   "Git & GitHub Workflow",
-  "UI/UX Prototyping",
-  "TypeScript",
-  "Performance Optimization",
+  "Responsive Web Design"
 ];
 
 const PROJECTS = [
@@ -51,8 +46,8 @@ const PROJECTS = [
     badge: "UI/UX Prototyping",
     title: "Royal Banquet",
     description:
-      "A responsive restorant site interface designed to provide a smooth browser experience.",
-    tags: ["HTML5", "CSS", "JavaScript"],
+      "A responsive restaurant site interface designed to provide a smooth browser experience.",
+    tags: ["Responsive design", "Business UI", "JavaScript"],
     live: "https://royal-banquet-db1h.vercel.app",
     repo: "https://github.com/DCE-code/Royal-Banquet",
   },
@@ -62,7 +57,7 @@ const PROJECTS = [
     title: "Mini Store",
     description:
       "A responsive e-commerce interface designed to provide a smooth product browsing experience, with components and API-driven product data.",
-    tags: ["React", "Vite", "Tailwind"],
+    tags: ["React", "Vite", "Tailwind", "API-driven product data"],
     live: "https://final-ministore.netlify.app",
     repo: "https://github.com/DCE-code/ministore",
   },
@@ -71,7 +66,7 @@ const PROJECTS = [
     badge: "Dynamic property",
     title: "Logistic Transport",
     description:
-      "A professional logistic transport site interface designed to provide a smooth browser experience",
+    "A responsive logistics website designed for a transportation company to showcase services, fleet capabilities and contact information. Built with semantic HTML, modern CSS and JavaScript.",
     tags: ["HTML5", "CSS", "JavaScript"],
     live: "https://thetransport.netlify.app",
     repo: "https://github.com/DCE-code/David-Son",
@@ -164,10 +159,10 @@ const TESTIMONIALS = [
 ];
 
 const STATS = [
-  { target: 100, suffix: "%", label: "Client Satisfaction" },
-  { target: 30, suffix: "+", label: "Completed Builds" },
-  { target: 3, suffix: "+", label: "Years Experience" },
-  { target: 10, suffix: "+", label: "Mastered Frameworks" },
+  { target: 15, suffix: "+", label: "Project Builds" },
+  { target: 6, suffix: "+", label: "Live Deployments" },
+  { target: 7, suffix: "+", label: "Core Technologies" },
+  { target: 1, suffix: "", label: "Frontend Developer" },
 ];
 
 /* =========================================================
@@ -472,6 +467,7 @@ export default function Portfolio() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [darkMode, setDarkMode] = useState(true);
 
   const { glowRef, dotRef, ringRef } = useMouseGlow();
   const { containerRef, cardRef } = useTilt();
@@ -516,7 +512,6 @@ export default function Portfolio() {
   };
 
   const handleDownloadCV = () => {
-    // Generate a downloadable text/markdown CV representation cleanly
     const cvContent = `# David Christian
 Frontend Developer | React Developer | UI Engineer
 
@@ -529,10 +524,9 @@ Frontend Developer and UI Engineer focused on building modern, responsive, and h
 ### Frontend Development
 - HTML5, Semantic HTML
 - CSS3, Flexbox, CSS Grid
+- Python
 - JavaScript (ES6+)
 - React.js
-- Next.js
-- TypeScript
 - Tailwind CSS
 
 ### UI / UX
@@ -613,7 +607,7 @@ GitHub: https://github.com/DCE-code
     : PROJECTS.filter(p => p.category === activeFilter);
 
   return (
-    <div className="dce-root">
+    <div className={`dce-root ${darkMode ? "dark" : "light"}`}>
       <style>{CSS}</style>
 
       {/* Page loader */}
@@ -661,6 +655,14 @@ GitHub: https://github.com/DCE-code
             ))}
           </div>
           <div className="nav-actions">
+            <button
+              className="theme-toggle"
+              onClick={() => setDarkMode((prev) => !prev)}
+              aria-label="Toggle light and dark mode"
+            >
+              {darkMode ? "☀️" : "🌙"}
+            </button>
+
             <button onClick={handleDownloadCV} className="btn-glass btn-sm cv-btn" aria-label="Download CV">
               CV ↓
             </button>
@@ -681,12 +683,12 @@ GitHub: https://github.com/DCE-code
               </div>
               <h1 className="hero-title">
                 Hi, I{'\''}m <br />
-                <span className="text-gradient">David Christian</span>
+                <span className="text-gradient">David Christian founder of DCE Studio </span>
               </h1>
               <h2 className="hero-subtitle">Frontend Developer &amp; UI Engineer</h2>
               <p className="hero-description">
-                Founder of DCE Studio. I engineer high-performance, responsive, and pixel-precise web applications
-                utilizing modern JavaScript, React, Next.js, and Tailwind CSS.
+                Frontend Developer building responsive, accessible and user-focused web applications with HTML, CSS, JavaScript 
+                and React. I enjoy turning ideas and designs into clean, functional digital experiences.
               </p>
               <div className="hero-buttons">
                 <a href="#projects" className="btn-glow">
@@ -725,13 +727,13 @@ GitHub: https://github.com/DCE-code
                   <span className="badge-accent">⚡</span>
                   <div>
                     <h4>Tech Stack</h4>
-                    <p>React • Next.js • Tailwind</p>
+                    <p>Python • JavaScript • React</p>
                   </div>
                 </div>
                 <div className="ui-glass-badge badge-bottom-left">
                   <span className="badge-accent">🏆</span>
                   <div>
-                    <h4>30+ Projects</h4>
+                    <h4>10+ Projects</h4>
                     <p>Successfully Engineered</p>
                   </div>
                 </div>
@@ -757,9 +759,9 @@ GitHub: https://github.com/DCE-code
             <p className="section-tag">01 / BACKGROUND</p>
             <h2 className="section-heading">Engineering Mindset</h2>
             <p className="section-copy">
-              Blending rigorous systematic analysis with creative interface design to construct memorable digital
-              ecosystems under the DCE Studio brand. I specialize in bridging design precision with back-end data
-              architectures for seamless user journeys.
+              I build responsive web experiences that combine clean UI design with practical frontend engineering.
+              I focus on writing maintainable code, creating intuitive user experiences and turning designs into functional
+              applications.
             </p>
           </div>
         </Reveal>
@@ -1084,7 +1086,20 @@ const CSS = `
     radial-gradient(circle at top left, rgba(0,242,254,0.12), transparent 30%),
     radial-gradient(circle at 85% 20%, rgba(79,172,254,0.14), transparent 25%),
     linear-gradient(135deg,#030712 0%,#060b16 50%,#030712 100%);
+  transition: background 0.3s ease, color 0.3s ease;
 }
+
+.dce-root.light {
+  --hex-dark-bg: #f8fafc;
+  --text-pure: #0f172a;
+  --text-slate: #475569;
+  --border-glass-specular: rgba(0, 0, 0, 0.08);
+  background-image:
+    radial-gradient(circle at top left, rgba(0,242,254,0.08), transparent 30%),
+    radial-gradient(circle at 85% 20%, rgba(79,172,254,0.08), transparent 25%),
+    linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+}
+
 .dce-root *{ margin:0; padding:0; box-sizing:border-box; font-family:inherit; }
 .dce-root html, .dce-root{ scroll-behavior:smooth; }
 
@@ -1139,7 +1154,12 @@ const CSS = `
 .navbar{
   position:fixed; top:0; width:100%; z-index:100; backdrop-filter:blur(20px);
   background:rgba(3,7,18,0.85); border-bottom:1px solid var(--border-glass-specular);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
+.dce-root.light .navbar {
+  background: rgba(248, 250, 252, 0.85);
+}
+
 .nav-container{ max-width:1200px; margin:0 auto; padding:1.2rem 2rem; display:flex; justify-content:space-between; align-items:center; }
 .menu-toggle{ display:none; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:var(--text-pure); width:40px; height:40px; border-radius:50%; cursor:pointer; }
 .logo{ font-size:1.5rem; font-weight:800; color:var(--text-pure); text-decoration:none; letter-spacing:1px; }
@@ -1148,6 +1168,8 @@ const CSS = `
 .nav-links .nav-item{ color:var(--text-slate); text-decoration:none; font-size:0.82rem; font-weight:500; transition:color 0.3s ease, transform 0.3s ease; }
 .nav-links .nav-item:hover{ color:var(--neon-glow-primary); transform:translateY(-2px); }
 .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+.theme-toggle { background: transparent; border: 1px solid var(--border-glass-specular); border-radius: 50%; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; font-size: 1rem; transition: transform 0.3s ease; }
+.theme-toggle:hover { transform: scale(1.1); }
 .cv-btn { padding: 0.5rem 1rem !important; font-size: 0.8rem !important; }
 .nav-cta{
   border:1px solid var(--neon-glow-primary); background:rgba(0,242,254,0.05); color:var(--neon-glow-primary);
@@ -1169,8 +1191,8 @@ const CSS = `
 @keyframes flash{ 0%,100%{ opacity:0.4; transform:scale(0.9); } 50%{ opacity:1; transform:scale(1.2); box-shadow:0 0 10px var(--neon-glow-primary); } }
 
 .hero-title{ font-size:3.5rem; line-height:1.1; margin-bottom:1rem; letter-spacing:-1.5px; font-weight:800; }
-.text-gradient{ background:linear-gradient(135deg,#ffffff 30%, var(--neon-glow-primary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.hero-subtitle{ font-size:1.35rem; color:#e2e8f0; font-weight:600; margin-bottom:1.2rem; }
+.text-gradient{ background:linear-gradient(135deg,var(--text-pure) 30%, var(--neon-glow-primary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-subtitle{ font-size:1.35rem; color:var(--text-pure); font-weight:600; margin-bottom:1.2rem; }
 .hero-description{ color:var(--text-slate); line-height:1.7; font-size:1rem; margin-bottom:2.5rem; }
 .hero-buttons{ display:flex; gap:1rem; margin-bottom:3rem; flex-wrap:wrap; }
 
@@ -1186,6 +1208,7 @@ const CSS = `
   font-weight:600; font-size:0.9rem; padding:0.8rem 1.8rem; border-radius:50px; text-decoration:none; transition:all 0.3s ease;
   display:inline-block; cursor:pointer;
 }
+.dce-root.light .btn-glass { background: rgba(0, 0, 0, 0.02); }
 .btn-glass:hover{ background:rgba(255,255,255,0.08); border-color:rgba(0,242,254,0.4); transform:translateY(-2px); }
 .btn-sm{ padding:0.5rem 1.2rem !important; font-size:0.85rem !important; }
 
@@ -1200,8 +1223,9 @@ const CSS = `
 
 .avatar-glass-frame{
   position:relative; z-index:1; border-radius:24px; border:1px solid var(--border-glass-specular);
-  background:rgba(255,255,255,0.02); padding:1rem; box-shadow:0 25px 50px rgba(0,0,0,0.5); transform-style:preserve-3d;
+  background:rgba(255,255,255,0.02); padding:1rem; box-shadow:0 25px 50px rgba(0,0,0,0.15); transform-style:preserve-3d;
 }
+.dce-root.light .avatar-glass-frame { background: rgba(0, 0, 0, 0.02); }
 .avatar-placeholder{
   width:280px; height:350px; border-radius:16px; display:grid; place-items:center;
   font-size:4.5rem; font-weight:800; letter-spacing:-2px; color:#04202a;
@@ -1209,14 +1233,15 @@ const CSS = `
 }
 .ui-glass-badge{
   position:absolute; background:rgba(10,15,30,0.85); backdrop-filter:blur(12px); border:1px solid var(--border-glass-specular);
-  padding:0.8rem 1.2rem; border-radius:16px; display:flex; align-items:center; gap:0.8rem; box-shadow:0 15px 30px rgba(0,0,0,0.5);
+  padding:0.8rem 1.2rem; border-radius:16px; display:flex; align-items:center; gap:0.8rem; box-shadow:0 15px 30px rgba(0,0,0,0.2);
   transition:transform 0.3s ease; z-index:2;
 }
+.dce-root.light .ui-glass-badge { background: rgba(255, 255, 255, 0.9); }
 .ui-glass-badge:hover{ transform:scale(1.05); }
 .badge-top-right{ top:20px; right:-50px; }
 .badge-bottom-left{ bottom:30px; left:-60px; }
 .badge-accent{ font-size:1.3rem; }
-.ui-glass-badge h4{ font-size:0.95rem; font-weight:700; color:#fff; }
+.ui-glass-badge h4{ font-size:0.95rem; font-weight:700; color:var(--text-pure); }
 .ui-glass-badge p{ font-size:0.75rem; color:var(--text-slate); }
 
 .stats-container{
@@ -1231,7 +1256,7 @@ const CSS = `
 .section-meta{ margin-bottom:2.5rem; }
 .tracker-line{ display:block; width:35px; height:3px; background:var(--neon-glow-primary); margin-bottom:0.8rem; border-radius:10px; }
 .section-tag{ color:var(--neon-glow-primary); font-size:0.75rem; font-weight:800; letter-spacing:2px; margin-bottom:0.4rem; font-family:"JetBrains Mono",monospace; }
-.section-heading{ font-size:2.2rem; font-weight:800; letter-spacing:-0.5px; }
+.section-heading{ font-size:2.2rem; font-weight:800; letter-spacing:-0.5px; color: var(--text-pure); }
 .section-copy{ margin-top:0.6rem; color:var(--text-slate); font-size:0.95rem; max-width:600px; line-height:1.6; }
 
 /* Project Filters */
@@ -1240,6 +1265,7 @@ const CSS = `
   background:rgba(255,255,255,0.02); border:1px solid var(--border-glass-specular); color:var(--text-slate);
   padding:0.5rem 1.2rem; border-radius:50px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:all 0.3s ease;
 }
+.dce-root.light .filter-btn { background: rgba(0, 0, 0, 0.02); }
 .filter-btn:hover, .filter-btn.active{
   background:rgba(0,242,254,0.1); border-color:var(--neon-glow-primary); color:var(--neon-glow-primary);
 }
@@ -1250,10 +1276,11 @@ const CSS = `
   transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), border-color 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter:blur(10px); position:relative; overflow:hidden;
 }
+.dce-root.light .glass-card { background: rgba(255, 255, 255, 0.6); }
 .glass-card:hover{ transform:translateY(-8px) scale(1.01); border-color:rgba(0,242,254,0.4); box-shadow:0 20px 40px rgba(0,242,254,0.1); }
 
 .card-badge{ font-size:0.7rem; font-weight:700; text-transform:uppercase; color:var(--neon-glow-primary); background:rgba(0,242,254,0.06); padding:4px 10px; border-radius:6px; font-family:"JetBrains Mono",monospace; }
-.card-title{ font-size:1.4rem; font-weight:800; margin:0.8rem 0 0.5rem 0; }
+.card-title{ font-size:1.4rem; font-weight:800; margin:0.8rem 0 0.5rem 0; color: var(--text-pure); }
 .card-description{ font-size:0.9rem; color:var(--text-slate); line-height:1.6; margin-bottom:1.2rem; }
 .testimonial-name{ color:var(--neon-glow-primary); font-size:0.95rem; margin-top:1rem; }
 
@@ -1265,8 +1292,9 @@ const CSS = `
 .tag-cloud{ display:flex; flex-wrap:wrap; gap:0.4rem; }
 .tag-cloud span, .skill-tag{
   font-size:0.75rem; font-weight:600; background:rgba(255,255,255,0.04); padding:6px 12px; border-radius:8px;
-  color:#cbd5e1; border:1px solid rgba(255,255,255,0.02); transition:all 0.3s ease; display:inline-block;
+  color:var(--text-slate); border:1px solid rgba(255,255,255,0.02); transition:all 0.3s ease; display:inline-block;
 }
+.dce-root.light .tag-cloud span, .dce-root.light .skill-tag { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.05); }
 .tag-cloud span:hover, .skill-tag:hover{ background:rgba(0,242,254,0.1); border-color:var(--neon-glow-primary); color:var(--neon-glow-primary); transform:translateY(-2px); }
 .skills-tags{ margin-top:1.5rem; gap:0.8rem; }
 .card-action-bar{ display:flex; gap:0.8rem; margin-top:1.5rem; flex-wrap:wrap; }
@@ -1291,35 +1319,40 @@ const CSS = `
 .contact-info{ display:flex; flex-direction:column; }
 .badge{ display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:50px; background:rgba(15,23,42,0.6); border:1px solid rgba(20,184,166,0.2); font-size:12px; font-weight:600; color:#14b8a6; margin-bottom:24px; width:fit-content; }
 .badge-dot{ width:8px; height:8px; background-color:#14b8a6; border-radius:50%; box-shadow:0 0 10px #14b8a6; }
-.main-title{ font-size:46px; font-weight:800; color:#fff; line-height:1.2; margin-bottom:16px; }
+.main-title{ font-size:46px; font-weight:800; color:var(--text-pure); line-height:1.2; margin-bottom:16px; }
 .gradient-text{ background:linear-gradient(90deg,#14b8a6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.subtitle{ font-size:16px; color:#94a3b8; line-height:1.6; margin-bottom:40px; }
+.subtitle{ font-size:16px; color:var(--text-slate); line-height:1.6; margin-bottom:40px; }
 .info-blocks{ display:flex; flex-direction:column; gap:24px; }
 .info-card{ display:flex; align-items:center; gap:16px; background:rgba(15,23,42,0.4); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); transition:transform 0.3s, border-color 0.3s; }
+.dce-root.light .info-card { background: rgba(255, 255, 255, 0.7); border-color: rgba(0, 0, 0, 0.04); }
 .info-card:hover{ transform:translateY(-2px); border-color:rgba(20,184,166,0.3); }
 .info-icon-box{ display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; background:rgba(20,184,166,0.1); color:#14b8a6; flex-shrink:0; padding:10px; }
-.info-card h4{ font-size:14px; color:#cbd5e1; margin-bottom:4px; font-weight:600; }
+.info-card h4{ font-size:14px; color:var(--text-pure); margin-bottom:4px; font-weight:600; }
 .info-card p{ font-size:14px; color:#14b8a6; font-weight:500; }
 .social-wrapper{ margin-top:48px; }
-.social-wrapper h3{ font-size:14px; color:#cbd5e1; margin-bottom:16px; font-weight:600; }
+.social-wrapper h3{ font-size:14px; color:var(--text-pure); margin-bottom:16px; font-weight:600; }
 .social-links{ display:flex; flex-wrap:wrap; gap:12px; }
-.social-links a{ display:inline-flex; padding:8px 16px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); color:#94a3b8; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.3s; }
+.social-links a{ display:inline-flex; padding:8px 16px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); color:var(--text-slate); font-size:13px; font-weight:600; text-decoration:none; transition:all 0.3s; }
+.dce-root.light .social-links a { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.05); }
 .social-links a:hover{ color:#14b8a6; border-color:rgba(20,184,166,0.3); transform:translateY(-2px); }
 
 .contact-form-wrapper-3d{ perspective:1000px; width:100%; }
 .contact-form-card{
   background:linear-gradient(135deg, rgba(15,23,42,0.75) 0%, rgba(9,15,29,0.9) 100%); backdrop-filter:blur(20px);
   border:1px solid rgba(20,184,166,0.2); padding:40px; border-radius:24px;
-  box-shadow:0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(20,184,166,0.1);
+  box-shadow:0 25px 50px -12px rgba(0,0,0,0.3), 0 0 30px rgba(20,184,166,0.1);
   transform-style:preserve-3d; transition:box-shadow 0.3s;
 }
-.contact-form-card:hover{ box-shadow:0 30px 60px -12px rgba(0,0,0,0.6), 0 0 40px rgba(20,184,166,0.25); }
+.dce-root.light .contact-form-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(241, 245, 249, 0.9) 100%);
+}
+.contact-form-card:hover{ box-shadow:0 30px 60px -12px rgba(0,0,0,0.4), 0 0 40px rgba(20,184,166,0.25); }
 .contact-form{ display:flex; flex-direction:column; gap:24px; }
 .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
 .input-group{ display:flex; flex-direction:column; gap:8px; }
-.input-group label{ font-size:13px; font-weight:600; color:#cbd5e1; }
+.input-group label{ font-size:13px; font-weight:600; color:var(--text-pure); }
 .input-group input, .input-group textarea{
-  background:#090f1d; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 16px; color:#fff;
+  background:var(--hex-dark-bg); border:1px solid var(--border-glass-specular); border-radius:12px; padding:14px 16px; color:var(--text-pure);
   font-size:14px; font-family:inherit; transition:all 0.3s; width:100%; resize:vertical;
 }
 .input-group input:focus, .input-group textarea:focus{ outline:none; border-color:#14b8a6; box-shadow:0 0 15px rgba(20,184,166,0.15); }
@@ -1329,20 +1362,20 @@ const CSS = `
 }
 .btn-submit:hover{ box-shadow:0 0 25px rgba(6,182,212,0.4); transform:translateY(-2px); }
 
-.site-footer{ border-top:1px solid rgba(255,255,255,0.08); padding:3rem 2rem; text-align:center; margin-top:6rem; color:var(--text-slate); }
+.site-footer{ border-top:1px solid var(--border-glass-specular); padding:3rem 2rem; text-align:center; margin-top:6rem; color:var(--text-slate); }
 
 @media (max-width:968px){
   .menu-toggle{ display:flex; align-items:center; justify-content:center; }
   .nav-links{
     display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:flex-start;
-    background:rgba(3,7,18,0.97); padding:1.5rem 2rem; border-bottom:1px solid var(--border-glass-specular); gap:1rem;
+    background:var(--hex-dark-bg); padding:1.5rem 2rem; border-bottom:1px solid var(--border-glass-specular); gap:1rem;
   }
   .nav-links.open{ display:flex; }
   .hero-grid{ grid-template-columns:1fr; text-align:center; gap:2rem; }
   .hero-visual{ margin-top:1rem; width:100%; display:flex; justify-content:center; flex-direction:column; align-items:center; }
   .avatar-glass-frame{ width:100%; max-width:280px; margin:0 auto; padding:0.8rem; }
   .avatar-placeholder{ width:100%; height:240px; font-size:3.5rem; }
-  .ui-glass-badge{ position:relative !important; inset:auto !important; top:auto !important; right:auto !important; bottom:auto !important; left:auto !important; margin:0.8rem auto 0 auto !important; width:100%; max-width:260px; justify-content:flex-start; box-shadow:0 10px 25px rgba(0,0,0,0.3); }
+  .ui-glass-badge{ position:relative !important; inset:auto !important; top:auto !important; right:auto !important; bottom:auto !important; left:auto !important; margin:0.8rem auto 0 auto !important; width:100%; max-width:260px; justify-content:flex-start; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
   .social-matrix{ justify-content:center; }
   .contact-grid{ grid-template-columns:1fr; gap:48px; }
   .main-title{ font-size:36px; }
@@ -1356,6 +1389,3 @@ const CSS = `
   .dce-root *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
 }
 `;
-
-
-
