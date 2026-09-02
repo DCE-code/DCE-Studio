@@ -58,7 +58,7 @@ export default function App() {
         />
 
         <main>
-          <Hero />
+          <Hero onOpenRecruiter={() => setRecruiterActive(true)} />
           <Projects />
           <Skills />
           <Services />
@@ -70,7 +70,7 @@ export default function App() {
         <Footer />
 
         <RecruiterMode
-          isActive={recruiterActive}
+          isOpen={recruiterActive}
           onClose={() => setRecruiterActive(false)}
         />
       </div>

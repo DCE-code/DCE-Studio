@@ -99,7 +99,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/DCE-code"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
@@ -109,7 +109,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/christian-david-47965011"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
@@ -119,22 +119,22 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://fiverr.com"
+                  href="https://X.com/mammieallyson21"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
                 >
-                  Fiverr
+                  x
                 </a>
               </li>
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://reddit.com/u/Careful_Fox5/s/Fs7xSdAT5c"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
                 >
-                  Instagram
+                  Reddit
                 </a>
               </li>
             </ul>

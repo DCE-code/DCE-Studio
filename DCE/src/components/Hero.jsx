@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AmbientScene from "./AmbientScene";
 
-export default function Hero() {
+export default function Hero({ onOpenRecruiter }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-12 pt-20 pb-16">
       {/* Background 3D/Ambient Layer */}
@@ -70,6 +70,14 @@ export default function Hero() {
           >
             Let's Talk
           </a>
+
+          <button
+            type="button"
+            onClick={onOpenRecruiter}
+            className="w-full sm:w-auto px-8 py-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 font-medium text-sm transition-all duration-300 text-center"
+          >
+            View / Download CV
+          </button>
         </motion.div>
 
         {/* Scroll Indicator */}

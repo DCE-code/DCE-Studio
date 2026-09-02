@@ -87,30 +87,43 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
           <button
             onClick={onOpenRecruiter}
             className="px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-emerald-500/50 text-xs font-mono text-neutral-200 hover:text-emerald-400 transition-all duration-300 flex items-center gap-2 shadow-inner"
+            type="button"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Recruiter Mode
+            View / Download CV
           </button>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white focus:outline-none"
-          aria-label="Toggle Menu"
-        >
-          <div className="w-5 h-4 flex flex-col justify-between">
-            <span
-              className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
-            />
-            <span
-              className={`w-full h-0.5 bg-white transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-            />
-          </div>
-        </button>
+        {/* Mobile Actions */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onOpenRecruiter}
+            className="px-3 py-2.5 rounded-xl bg-emerald-500 text-neutral-950 font-mono text-xs font-bold transition-colors hover:bg-emerald-400"
+            aria-label="View or download CV"
+            title="View or download CV"
+          >
+            CV
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            <div className="w-5 h-4 flex flex-col justify-between">
+              <span
+                className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+              />
+              <span
+                className={`w-full h-0.5 bg-white transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -151,7 +164,7 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
                 className="w-full py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Launch Recruiter Mode
+                View / Download CV
               </button>
             </div>
           </motion.div>
