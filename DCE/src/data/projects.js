@@ -63,7 +63,7 @@ const projectsData = [
     image:
       "file_00000000c5d481f49cd38da8c8ed5f27.png",
       featured: true,
-    liveUrl: "",
+    liveUrl: "https://opportunity-hub-zeta.vercel.app",
     details:
       "Explore the Opportunity Hub live experience to discover and apply to various opportunities.",
   },
