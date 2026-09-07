@@ -109,22 +109,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/in/christian-david-47965011"
+                  href="https://linkedin.com/in/christian-david-479650311"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
                 >
                   LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://X.com/mammieallyson21"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-400 hover:text-emerald-400 transition-colors"
-                >
-                  x
                 </a>
               </li>
               <li>
@@ -135,6 +125,16 @@ export default function Footer() {
                   className="text-neutral-400 hover:text-emerald-400 transition-colors"
                 >
                   Reddit
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@_lush2?_r=1&_d=ee15k5dia55hmj&sec_uid=MS4wLjABAAAAtx6gkz5CqIa6Kl-W4Ni6PSOAWqvISFu6rE7xYKeQRrFM59GPWOZhOqyEdsZIAYrg&share_author_id=7364511075779429382&sharer_language=en&source=h5_m&u_code=ee15kge42i173l&timestamp=1788504178&user_id=7364511075779429382&sec_user_id=MS4wLjABAAAAtx6gkz5CqIa6Kl-W4Ni6PSOAWqvISFu6rE7xYKeQRrFM59GPWOZhOqyEdsZIAYrg&item_author_type=1&utm_source=whatsapp_business&utm_campaign=client_share&utm_medium=android&share_iid=7680154454297118485&share_link_id=aecd5026-c6f6-4676-b48b-2978b59f1586&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb4907&social_share_type=5&share_enter_from=settings_page&item_author_type=1&enable_checksum=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-400 hover:text-emerald-400 transition-colors"
+                >
+                  Tictok
                 </a>
               </li>
             </ul>

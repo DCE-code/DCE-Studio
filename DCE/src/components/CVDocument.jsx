@@ -91,7 +91,7 @@ export default function CVDocument() {
                     <div>
                         <div className="flex justify-between items-baseline font-semibold">
                             <span className="text-neutral-900">
-                                Interactive Web Applications (Lumière, SkyPort, Royal Banquet)
+                                Interactive Web Applications (Opportunity Hub, Movie Finder, Royal Banquet)
                             </span>
                             <span className="text-xs font-mono text-emerald-600">2026</span>
                         </div>

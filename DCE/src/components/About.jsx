@@ -55,7 +55,7 @@ export default function About() {
             <div className="pt-4 flex flex-wrap gap-4">
               <div className="px-5 py-3 rounded-xl bg-neutral-900 border border-neutral-800">
                 <span className="block text-2xl font-bold text-emerald-400">
-                  3+
+                  1+
                 </span>
                 <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
                   Years Building
@@ -63,7 +63,7 @@ export default function About() {
               </div>
               <div className="px-5 py-3 rounded-xl bg-neutral-900 border border-neutral-800">
                 <span className="block text-2xl font-bold text-cyan-400">
-                  20+
+                  7+
                 </span>
                 <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
                   Ideas Shipped
