@@ -89,7 +89,7 @@ const projectsData = [
     techStack: ["HTML5", "CSS3", "JavaScript"],
     image:
       "pexels-eugene-khmelevskyi-2508636-4134246.jpg",
-    liveUrl: "",
+    liveUrl: "https://coke-sepia.vercel.app/",
     details:
       "Experience the Coca'Cola brand through this modern interface, designed to enhance user engagement and provide a unique brand experience.",
   },
