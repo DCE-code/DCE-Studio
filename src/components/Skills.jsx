@@ -33,8 +33,10 @@ export default function Skills() {
       skills: [
         { name: "Git & GitHub", level: "85%", icon: "🐙" },
         { name: "VS Code", level: "90%", icon: "💻" },
+        { name: "Antigravity", level: "90%", icon: "🖥" },
         { name: "Spck Editor", level: "80%", icon: "📱" },
         { name: "Canva", level: "85%", icon: "🖌️" },
+        { name: "Figma", level: "85%", icon: "🎩" },
       ],
     },
   ];

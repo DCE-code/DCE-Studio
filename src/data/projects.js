@@ -28,21 +28,21 @@ const projectsData = [
   },
   {
     id: "js-projects",
-    title: "JavaScript Projects",
+    title: "St. luke lab",
     category: "Web Apps",
     description:
       "A collection of practical JavaScript experiments showing interaction design, browser APIs, and problem solving.",
     techStack: ["JavaScript", "DOM APIs", "HTML & CSS"],
     image:
       "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
-      liveUrl: "https://",
+      liveUrl: "https://dce-code.github.io/JS-project/",
     details:
       "Check out these JavaScript projects to see interactive web development in action.",
   },
   {
     id: "royal-banquet",
     title: "Royal Banquet",
-    category: "E-Commerce",
+    category: "UI/UX",
     description:
       "A polished event and hospitality experience designed to make premium service feel immediate and approachable.",
     techStack: ["JavaScript", "UI/UX", "Responsive Design"],
@@ -92,6 +92,47 @@ const projectsData = [
     liveUrl: "https://coke-sepia.vercel.app/",
     details:
       "Experience the Coca'Cola brand through this modern interface, designed to enhance user engagement and provide a unique brand experience.",
+  },
+  {
+    id: "DCE Prime",
+    title: "DCE prime",
+    category: "Web Apps",
+    description:
+      "Real estate platform built for seamless property browsing and management, aiming to provide an intuitive user experience.",
+    techStack: ["HTML", "JavaScript", "Responsive UI"],
+    image:
+      "Real estate.jpeg",
+      featured: true,
+    liveUrl: "https://dce-real-estate-demo-3.vercel.app",
+    details:
+      "View the DCE Prime platform and experience seamless property browsing and management.",
+  },
+  {
+    id: "Ekene Show Cases",
+    title: "Ekene Show Cases",
+    category: "Web Apps",
+    description:
+      "Ekene Show Cases is a platform that focuses on the Ndukwa west region and showcases cultural, tradition, food and lifestyle.",
+    techStack: ["HTML", "Tailwind CSS", "Responsive Layout"],
+    image:
+      "storytelling.jpg",
+        featured: true,
+    liveUrl: "https://ekene-show-cases.vercel.app",
+    details:
+      "Let's explore the Ekene Show Cases platform and discover the rich cultural heritage of the Ndukwa west region.",
+  },
+  {
+    id: "Urbrannest",
+    title: "Urbrannest",
+    category: "Web Apps",
+    description:
+      "Urbrannest is a web application designed to showcase real estate properties and facilitate seamless property browsing and management.",
+    techStack: ["HTML", "CSS3", "JavaScript"],
+    image:
+      "pexels-md-nadim-mahmud-2158301177-35385546.jpg",
+    liveUrl: "https://dce-real-esteta-damo-2.vercel.app",
+    details:
+      "Securing a seamless real estate browsing and management experience.",
   },
 ];
 

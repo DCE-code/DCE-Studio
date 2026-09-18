@@ -70,10 +70,10 @@ export default function Contact() {
                     Direct Email
                   </span>
                   <a
-                    href="mailto:davidchristian2003@gmail.com"
+                    href="mailto:davchristian293@gmail.com"
                     className="text-white font-medium hover:text-emerald-400 transition-colors"
                   >
-                    davidchristian2003@gmail.com
+                    davchristian293@gmail.com
                   </a>
                 </div>
               </div>
