@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -48,7 +47,7 @@ export default function Hero() {
           id="hero-title"
           className="hero-reveal hero-reveal--title hero-title"
         >
-          Engineering Digital Experiences That <span>Feel Exceptional.</span>
+          Frontend Developer Building <span>Modern Digital Experiences.</span>
         </h1>
         <p className="hero-reveal hero-reveal--description hero-subtitle">
           Frontend developer focused on clean interfaces, responsive
@@ -56,10 +55,10 @@ export default function Hero() {
           modern frontend tools.
         </p>
         <div className="hero-reveal hero-reveal--actions hero-actions">
-          <a href="#projects" className="button button-primary">
+          <a href="#projects" className="button button-primary" data-magnetic>
             Explore Projects <span aria-hidden="true">&rarr;</span>
           </a>
-          <a href="#contact" className="button button-secondary">
+          <a href="#contact" className="button button-secondary" data-magnetic>
             Let&apos;s Work Together
           </a>
         </div>

@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import RecruiterMode from "./components/RecruiterMode";
 import ScrollProgress from "./components/ScrollProgress";
+import CustomCursor from "./components/CustomCursor";
 import "./App.css";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       className={`app-container ${recruiterActive ? "recruiter-mode-active" : ""}`}
     >
       <ScrollProgress />
+      <CustomCursor />
       <div className="main-content content-visible">
         <Navbar onOpenRecruiter={() => setRecruiterActive(true)} />
 

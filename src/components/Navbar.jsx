@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar({ onOpenRecruiter }) {
   const [scrolled, setScrolled] = useState(false);
@@ -7,15 +8,9 @@ export default function Navbar({ onOpenRecruiter }) {
   const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    window.addEventListener("scroll", handleScroll);
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach(
@@ -26,24 +21,33 @@ export default function Navbar({ onOpenRecruiter }) {
     document
       .querySelectorAll("main section[id]")
       .forEach((section) => observer.observe(section));
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       observer.disconnect();
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const navLinks = [
-    // { name: "Home", href: "#top" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <header className={`site-nav ${scrolled ? "site-nav--scrolled" : ""}`}>
       <div className="site-nav__inner">
-        {/* Brand Logo / Identity */}
         <a
           href="#top"
           className="flex items-center gap-3 group"
@@ -53,7 +57,6 @@ export default function Navbar({ onOpenRecruiter }) {
             <img
               src="/Brand%20logo.png"
               alt="DCE Studio logo"
-              className="h-full w-full object-cover"
               width="40"
               height="40"
             />
@@ -64,7 +67,6 @@ export default function Navbar({ onOpenRecruiter }) {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
         <nav className="site-nav__links" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a
@@ -77,14 +79,17 @@ export default function Navbar({ onOpenRecruiter }) {
           ))}
         </nav>
 
-        {/* Action Controls */}
         <div className="site-nav__actions">
-          <button onClick={onOpenRecruiter} className="nav-cv" type="button">
+          <button
+            onClick={onOpenRecruiter}
+            className="nav-cv"
+            type="button"
+            data-magnetic
+          >
             Download CV
           </button>
         </div>
 
-        {/* Mobile Actions */}
         <div className="mobile-actions">
           <button
             type="button"
@@ -97,57 +102,49 @@ export default function Navbar({ onOpenRecruiter }) {
           </button>
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="menu-toggle"
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+            className={`menu-toggle ${mobileMenuOpen ? "menu-toggle--open" : ""}`}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
           >
-            <div className="w-5 h-4 flex flex-col justify-between">
-              <span
-                className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
-              />
-              <span
-                className={`w-full h-0.5 bg-white transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`w-full h-0.5 bg-white transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-              />
-            </div>
+            <span className="menu-toggle__line menu-toggle__line--top" />
+            <span className="menu-toggle__line menu-toggle__line--middle" />
+            <span className="menu-toggle__line menu-toggle__line--bottom" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mobile-menu"
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="mobile-menu mobile-menu--open"
             id="mobile-navigation"
           >
-            <div className="flex flex-col space-y-4">
+            <nav className="mobile-menu__links" aria-label="Mobile navigation">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
                   className="mobile-menu__link"
                 >
                   {link.name}
                 </a>
               ))}
-            </div>
-
+            </nav>
             <div className="mobile-menu__footer">
               <button
                 onClick={() => {
-                  setMobileMenuOpen(false);
+                  closeMobileMenu();
                   onOpenRecruiter();
                 }}
                 className="button button-primary"
+                type="button"
               >
                 Download CV
               </button>

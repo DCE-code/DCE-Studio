@@ -37,7 +37,7 @@ export default function Projects() {
               <div className="project-card__media">
                 <img
                   src={project.image}
-                  alt={`${project.title} project preview`}
+                  alt={`${project.title} project preview by David Christian Ekene`}
                   loading="lazy"
                   decoding="async"
                 />
@@ -61,6 +61,7 @@ export default function Projects() {
                   {project.liveUrl && (
                     <a
                       className="button button-primary"
+                      data-magnetic
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -71,6 +72,7 @@ export default function Projects() {
                   {project.githubUrl && (
                     <a
                       className="button button-secondary"
+                      data-magnetic
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"

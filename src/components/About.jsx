@@ -14,9 +14,10 @@ export default function About() {
           <div className="space-y-5 text-neutral-300 leading-relaxed">
             <p>
               I&apos;m David Christian Ekene, a junior frontend developer
-              focused on building responsive and interactive web experiences. I
-              work primarily with HTML, CSS, JavaScript, React and Vite, while
-              using Git and GitHub throughout my development workflow.
+              focused on building responsive websites, web applications and
+              modern user interfaces. I work primarily with HTML, CSS,
+              JavaScript, React and Vite, while using Git and GitHub throughout
+              my development workflow at DCE Studio.
             </p>
             <p>
               I&apos;ve built projects across e-commerce, real estate,

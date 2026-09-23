@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -44,7 +45,7 @@ export default function ProjectModal({ project, onClose }) {
               <div className="mb-6 aspect-video overflow-hidden rounded-xl border border-slate-700/50">
                 <img
                   src={project.image}
-                  alt={`${project.title} preview`}
+                  alt={`${project.title} project preview by David Christian Ekene`}
                   className="h-full w-full object-cover"
                 />
               </div>
