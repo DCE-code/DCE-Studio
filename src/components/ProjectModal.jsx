@@ -1,11 +1,19 @@
+import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProjectModal({ project, onClose }) {
+  useEffect(() => {
+    if (!project) return undefined;
+    const handleKeyDown = (event) => event.key === "Escape" && onClose();
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, project]);
+
   return (
     <AnimatePresence>
       {project && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/80 p-6 backdrop-blur-sm"
+          className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -13,7 +21,7 @@ export default function ProjectModal({ project, onClose }) {
           onClick={onClose}
         >
           <motion.div
-            className="relative w-full max-w-xl rounded-2xl border border-neutral-800 bg-neutral-900 p-7 shadow-2xl"
+            className="modal-panel relative w-full max-w-2xl rounded-2xl border p-5 shadow-2xl sm:p-7"
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
@@ -32,8 +40,17 @@ export default function ProjectModal({ project, onClose }) {
                 &times;
               </span>
             </button>
+            {project.image && (
+              <div className="mb-6 aspect-video overflow-hidden rounded-xl border border-slate-700/50">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            )}
             <p className="mb-3 font-mono text-xs uppercase tracking-widest text-emerald-400">
-              Project details
+              {project.category} / Case study
             </p>
             <h2
               id="project-modal-title"
@@ -42,8 +59,36 @@ export default function ProjectModal({ project, onClose }) {
               {project.title}
             </h2>
             <p className="mb-6 leading-relaxed text-neutral-300">
-              {project.details || project.description}
+              {project.caseStudy?.overview || project.description}
             </p>
+            {project.caseStudy && (
+              <div className="grid gap-5 text-sm text-neutral-300">
+                {[
+                  ["Problem", project.caseStudy.problem],
+                  ["My role", project.caseStudy.role],
+                  ["Challenges", project.caseStudy.challenges],
+                  ["Solution", project.caseStudy.solution],
+                  ["Result", project.caseStudy.result],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <h3 className="mb-1 text-xs font-mono uppercase tracking-widest text-emerald-400">
+                      {label}
+                    </h3>
+                    <p className="leading-relaxed">{value}</p>
+                  </div>
+                ))}
+                <div>
+                  <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-emerald-400">
+                    Key features
+                  </h3>
+                  <ul className="list-disc space-y-1 pl-5">
+                    {project.caseStudy.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {project.techStack?.map((tech) => (
                 <span
@@ -54,6 +99,16 @@ export default function ProjectModal({ project, onClose }) {
                 </span>
               ))}
             </div>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-primary mt-6"
+              >
+                Live Demo &rarr;
+              </a>
+            )}
           </motion.div>
         </motion.div>
       )}

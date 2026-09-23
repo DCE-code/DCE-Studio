@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
+export default function Navbar({ onOpenRecruiter }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,33 +16,40 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach(
+          (entry) => entry.isIntersecting && setActiveSection(entry.target.id),
+        ),
+      { rootMargin: "-35% 0px -55%" },
+    );
+    document
+      .querySelectorAll("main section[id]")
+      .forEach((section) => observer.observe(section));
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const navLinks = [
+    { name: "Home", href: "#top" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Services", href: "#services" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-neutral-950/80 backdrop-blur-xl border-b border-neutral-800/80 py-4 shadow-2xl"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+    <header className={`site-nav ${scrolled ? "site-nav--scrolled" : ""}`}>
+      <div className="site-nav__inner">
         {/* Brand Logo / Identity */}
         <a
           href="#top"
           className="flex items-center gap-3 group"
           aria-label="DCE Studio home"
         >
-          <div className="w-10 h-10 rounded-xl overflow-hidden border border-emerald-400/40 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div className="brand-mark">
             <img
               src="/Brand%20logo.png"
               alt="DCE Studio logo"
@@ -50,23 +58,19 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
               height="40"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-white tracking-wider text-sm">
-              DCE STUDIO
-            </span>
-            <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">
-              Frontend Dev
-            </span>
+          <div className="brand-copy">
+            <span>DCE STUDIO</span>
+            <span>Junior Frontend Developer</span>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="site-nav__links" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-neutral-300 hover:text-emerald-400 transition-colors tracking-wide"
+              className={`site-nav__link ${activeSection === link.href.slice(1) ? "site-nav__link--active" : ""}`}
             >
               {link.name}
             </a>
@@ -74,32 +78,18 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className="rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm text-neutral-200 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-          >
-            {theme === "dark" ? "☀" : "☾"}
-          </button>
-          <button
-            onClick={onOpenRecruiter}
-            className="px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-emerald-500/50 text-xs font-mono text-neutral-200 hover:text-emerald-400 transition-all duration-300 flex items-center gap-2 shadow-inner"
-            type="button"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            View / Download CV
+        <div className="site-nav__actions">
+          <button onClick={onOpenRecruiter} className="nav-cv" type="button">
+            Download CV
           </button>
         </div>
 
         {/* Mobile Actions */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="mobile-actions">
           <button
             type="button"
             onClick={onOpenRecruiter}
-            className="px-3 py-2.5 rounded-xl bg-emerald-500 text-neutral-950 font-mono text-xs font-bold transition-colors hover:bg-emerald-400"
+            className="nav-cv nav-cv--mobile"
             aria-label="View or download CV"
             title="View or download CV"
           >
@@ -108,8 +98,10 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white focus:outline-none"
-            aria-label="Toggle Menu"
+            className="menu-toggle"
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <div className="w-5 h-4 flex flex-col justify-between">
               <span
@@ -133,7 +125,8 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-neutral-950/95 backdrop-blur-2xl border-b border-neutral-800 px-6 py-6 space-y-4"
+            className="mobile-menu"
+            id="mobile-navigation"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
@@ -141,30 +134,22 @@ export default function Navbar({ onOpenRecruiter, theme, onToggleTheme }) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-neutral-200 hover:text-emerald-400 transition-colors"
+                  className="mobile-menu__link"
                 >
                   {link.name}
                 </a>
               ))}
             </div>
 
-            <div className="pt-4 border-t border-neutral-800/80 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={onToggleTheme}
-                className="w-full py-3 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 font-mono text-xs font-bold uppercase tracking-wider"
-              >
-                {theme === "dark" ? "Use Light Theme" : "Use Dark Theme"}
-              </button>
+            <div className="mobile-menu__footer">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenRecruiter();
                 }}
-                className="w-full py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                className="button button-primary"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                View / Download CV
+                Download CV
               </button>
             </div>
           </motion.div>
