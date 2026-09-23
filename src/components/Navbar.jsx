@@ -33,7 +33,7 @@ export default function Navbar({ onOpenRecruiter }) {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#top" },
+    // { name: "Home", href: "#top" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },

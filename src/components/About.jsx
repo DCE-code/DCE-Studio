@@ -1,14 +1,10 @@
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 export default function About() {
   return (
     <section id="about" className="py-24 px-6 md:px-12 bg-neutral-950/70">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_.8fr] gap-12">
-        <motion.div
-          initial={{ opacity: 0, x: -18 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-        >
+        <Reveal>
           <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
             {"// About me"}
           </span>
@@ -29,11 +25,10 @@ export default function About() {
               development team and contribute to real-world products.
             </p>
           </div>
-        </motion.div>
-        <motion.aside
-          initial={{ opacity: 0, x: 18 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+        </Reveal>
+        <Reveal
+          as="aside"
+          delay={120}
           className="p-7 border border-neutral-800 bg-neutral-900/60 rounded-2xl"
         >
           <span className="text-emerald-400 font-mono text-xs uppercase tracking-widest">
@@ -47,7 +42,7 @@ export default function About() {
             <span>2026</span>
             <span>Credit</span>
           </div>
-        </motion.aside>
+        </Reveal>
       </div>
     </section>
   );

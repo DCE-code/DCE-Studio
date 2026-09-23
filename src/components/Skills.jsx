@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 const groups = [
   {
@@ -30,22 +30,20 @@ export default function Skills() {
       className="py-24 px-6 md:px-12 relative bg-neutral-950"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
+        <Reveal className="mb-12">
           <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
             {"// Toolkit"}
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3">
             Tools for thoughtful <span>frontend work.</span>
           </h2>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {groups.map((group, index) => (
-            <motion.article
+            <Reveal
               key={group.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
+              as="article"
+              delay={index * 70}
               className="p-7 rounded-2xl bg-neutral-900/60 border border-neutral-800"
             >
               <h3 className="text-xl font-bold text-white mb-2">
@@ -64,7 +62,7 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </Reveal>
           ))}
         </div>
       </div>

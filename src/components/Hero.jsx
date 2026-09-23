@@ -1,10 +1,43 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-export default function Hero({ onOpenRecruiter }) {
+export default function Hero() {
+  const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    const background = backgroundRef.current;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (
+      !background ||
+      reduceMotion.matches ||
+      window.matchMedia("(pointer: coarse)").matches
+    )
+      return undefined;
+
+    let frame = 0;
+    const handlePointerMove = (event) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 8;
+        const y = (event.clientY / window.innerHeight - 0.5) * 5;
+        background.style.setProperty("--parallax-x", `${x}px`);
+        background.style.setProperty("--parallax-y", `${y}px`);
+      });
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", handlePointerMove);
+    };
+  }, []);
+
   return (
     <section className="hero-section" aria-labelledby="hero-title">
-      <div className="hero-background" aria-hidden="true">
+      <div ref={backgroundRef} className="hero-background" aria-hidden="true">
         <div className="hero-particles" />
       </div>
       <div className="hero-copy">

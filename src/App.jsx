@@ -25,7 +25,7 @@ export default function App() {
         <Navbar onOpenRecruiter={() => setRecruiterActive(true)} />
 
         <main>
-          <Hero onOpenRecruiter={() => setRecruiterActive(true)} />
+          <Hero />
           <Projects />
           <Skills />
           <Services />

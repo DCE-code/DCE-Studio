@@ -60,6 +60,27 @@ button {
   position: relative;
   isolation: isolate;
 }
+.reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.js .reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.99);
+  filter: blur(4px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
 main > section {
   border-top: 1px solid rgba(148, 163, 184, 0.08);
 }
@@ -225,6 +246,8 @@ main > section {
   z-index: -2;
   inset: -1rem -30vw;
   overflow: hidden;
+  transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 0;
   background:
     radial-gradient(
@@ -256,6 +279,7 @@ main > section {
     black 75%,
     transparent
   );
+  animation: grid-drift 28s linear infinite;
 }
 .hero-background::after {
   position: absolute;
@@ -292,6 +316,11 @@ main > section {
   max-width: 47rem;
 }
 .hero-reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.js .hero-reveal {
   opacity: 0;
   transform: translateY(18px);
   filter: blur(8px);
@@ -369,6 +398,11 @@ main h2 span {
 }
 .button:hover {
   transform: translateY(-3px);
+}
+.button:active,
+.nav-cv:active,
+.menu-toggle:active {
+  transform: scale(0.98);
 }
 .button-primary {
   background: var(--accent-blue);
@@ -675,6 +709,13 @@ main .bg-gradient-to-r {
     background-position: 8rem 5rem;
   }
 }
+@keyframes grid-drift {
+  to {
+    background-position:
+      4rem 4rem,
+      4rem 4rem;
+  }
+}
 
 @media (max-width: 800px) {
   .site-nav__inner,
@@ -747,5 +788,17 @@ main .bg-gradient-to-r {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+  .js .reveal,
+  .js .hero-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+    transition: none;
+  }
+  .hero-background {
+    transform: none;
+    transition: none;
   }
 }

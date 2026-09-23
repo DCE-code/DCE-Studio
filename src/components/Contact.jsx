@@ -1,8 +1,10 @@
+import Reveal from "./Reveal";
+
 export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6 md:px-12 bg-neutral-950">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_.8fr] gap-12 items-end">
-        <div>
+        <Reveal>
           <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
             {"// Contact"}
           </span>
@@ -13,8 +15,8 @@ export default function Contact() {
             Open to junior frontend opportunities, collaborations and selected
             freelance projects.
           </p>
-        </div>
-        <div className="grid gap-3">
+        </Reveal>
+        <Reveal delay={120} className="grid gap-3">
           <a
             className="p-5 border border-neutral-800 rounded-xl text-neutral-200 hover:border-emerald-400 transition-colors"
             href="mailto:davchristian293@gmail.com"
@@ -54,7 +56,7 @@ export default function Contact() {
           >
             WhatsApp for DCE Studio clients &rarr;
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
