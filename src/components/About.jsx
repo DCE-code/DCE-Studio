@@ -13,7 +13,7 @@ export default function About() {
             <p>
               <strong>David Christian Ekene</strong>
               <br />
-              Frontend Developer &amp; Founder of DCE Studio
+              Junior Frontend Developer &amp; Founder of DCE Studio
             </p>
             <p>
               I combine frontend development, UI/UX thinking, responsive web

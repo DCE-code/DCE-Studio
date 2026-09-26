@@ -5,16 +5,16 @@ export default function Hero() {
       <div className="hero-copy">
         <p className="hero-eyebrow">
           <span>David Christian Ekene</span>
-          <i /> Frontend Developer <i /> Web Designer <i /> Digital Creator
+          <i /> Junior Frontend Developer <i /> Web Designer <i /> Digital
+          Creator
         </p>
         <h1 id="hero-title" className="hero-title">
           I build fast, modern websites that help businesses look credible and{" "}
           <span>turn visitors into customers.</span>
         </h1>
         <p className="hero-subtitle">
-          Frontend developer and founder of DCE Studio, focused on building
-          responsive, high-performance websites with React, JavaScript, Tailwind
-          CSS, and Next.js.
+          A Junior Frontend Developer in Ibadan, Nigeria, building responsive,
+          interactive web experiences with JavaScript, React, and Vite.
         </p>
         <div className="hero-actions">
           <a href="#contact" className="button button-primary">
@@ -32,12 +32,13 @@ export default function Hero() {
         </a>
         <div
           className="hero-tech"
-          aria-label="Technologies: React, JavaScript, Next.js, Tailwind CSS"
+          aria-label="Technologies: HTML, CSS, JavaScript, React, Vite"
         >
+          <span>HTML &amp; CSS</span>
+          <i />
           <span>React</span>
           <i /> <span>JavaScript</span>
-          <i /> <span>Next.js</span>
-          <i /> <span>Tailwind CSS</span>
+          <i /> <span>Vite</span>
         </div>
       </div>
       <div className="hero-visual">
@@ -47,7 +48,6 @@ export default function Hero() {
             alt="David Christian Ekene"
             width="1080"
             height="1440"
-            fetchPriority="high"
             decoding="async"
             className="hero-portrait__image"
           />
