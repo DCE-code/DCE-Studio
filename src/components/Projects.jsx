@@ -1,99 +1,56 @@
 import { useState } from "react";
 import projectsData from "../data/projects";
 import ProjectModal from "./ProjectModal";
+import ProjectCard from "./ProjectCard";
 import Reveal from "./Reveal";
-
-function ExternalArrow() {
-  return <span aria-hidden="true">&rarr;</span>;
-}
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="section projects-section">
       <div className="section-shell">
         <Reveal className="section-heading">
           <div>
-            <span className="section-kicker">{"// Selected work"}</span>
+            <p className="section-kicker">Selected work / Case studies</p>
             <h2 className="section-title">
-              A selection of work built with intention.
+              Real projects, <span>clear thinking.</span>
             </h2>
           </div>
           <p className="section-description">
-            A selection of digital products, interfaces, and web experiences
-            built with clean code and intentional design.
+            A look at websites and interfaces built across e-commerce, real
+            estate, opportunity discovery and interactive web experiences.
           </p>
         </Reveal>
-
         <div className="projects-grid">
           {projectsData.map((project, index) => (
-            <Reveal
-              key={project.id}
-              as="article"
-              delay={index * 100}
-              className="project-card"
-            >
-              <div className="project-card__media">
-                <img
-                  src={project.image}
-                  alt={`${project.title} project preview by David Christian Ekene`}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="project-card__category">
-                  {project.category}
-                </span>
-              </div>
-              <div className="project-card__body">
-                <h3 className="project-card__title">{project.title}</h3>
-                <p className="project-card__description">
-                  {project.description}
-                </p>
-                <div className="project-card__tech">
-                  {project.techStack?.map((tech) => (
-                    <span className="tech-badge" key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="project-card__actions">
-                  {project.liveUrl && (
-                    <a
-                      className="button button-primary"
-                      data-magnetic
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Demo <ExternalArrow />
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      className="button button-secondary"
-                      data-magnetic
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      GitHub
-                    </a>
-                  )}
-                  <button
-                    className="button button-secondary project-card__more"
-                    type="button"
-                    onClick={() => setSelectedProject(project)}
-                    aria-label={`View details for ${project.title}`}
-                  >
-                    <span aria-hidden="true">+</span>
-                  </button>
-                </div>
-              </div>
+            <Reveal key={project.id} delay={index * 45}>
+              <ProjectCard
+                project={project}
+                index={index}
+                onOpenCaseStudy={setSelectedProject}
+              />
             </Reveal>
           ))}
         </div>
+        <aside className="quality-note">
+          <div>
+            <p className="section-kicker">Built with a focus on quality.</p>
+            <p>
+              I focus on building clean, responsive and maintainable interfaces
+              that work across devices and communicate clearly.
+            </p>
+          </div>
+          <ul aria-label="Capabilities">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Tailwind CSS</li>
+            <li>Responsive design</li>
+            <li>Modern UI</li>
+            <li>GitHub</li>
+            <li>Vercel</li>
+          </ul>
+        </aside>
       </div>
       <ProjectModal
         project={selectedProject}

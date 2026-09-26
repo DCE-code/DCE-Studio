@@ -2,60 +2,46 @@ import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 bg-neutral-950">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_.8fr] gap-12 items-end">
-        <Reveal>
-          <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
-            {"// Contact"}
-          </span>
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white mt-4 mb-6">
-            Let&apos;s Build <span>Something Great.</span>
-          </h2>
-          <p className="text-neutral-400 max-w-xl leading-relaxed">
-            Open to junior frontend opportunities, collaborations and selected
-            freelance projects.
+    <section id="contact" className="section contact-section">
+      <div className="section-shell contact-inner">
+        <Reveal className="contact-copy">
+          <p className="section-kicker">Contact / DCE Studio</p>
+          <h2>Have a website idea?</h2>
+          <p>
+            Let&apos;s turn it into a fast, modern and professional digital
+            experience.
           </p>
+          <div className="contact-actions">
+            <a
+              className="button button-primary"
+              href="mailto:davchristian293@gmail.com?subject=Start%20a%20project"
+            >
+              Start a Project <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a
+              className="button button-secondary"
+              href="mailto:davchristian293@gmail.com"
+            >
+              Email Me
+            </a>
+          </div>
         </Reveal>
-        <Reveal delay={120} className="grid gap-3">
-          <a
-            className="p-5 border border-neutral-800 rounded-xl text-neutral-200 hover:border-emerald-400 transition-colors"
-            href="mailto:davchristian293@gmail.com"
-          >
-            <small className="block text-neutral-500 font-mono uppercase mb-2">
-              Email
-            </small>
-            davchristian293@gmail.com
+        <Reveal delay={100} className="contact-details">
+          <a href="mailto:davchristian293@gmail.com">
+            <small>Email</small>
+            <span>davchristian293@gmail.com</span>
+            <b aria-hidden="true">&#8599;</b>
           </a>
           <a
-            className="p-5 border border-neutral-800 rounded-xl text-neutral-200 hover:border-emerald-400 transition-colors"
-            href="https://www.linkedin.com/in/christian-david-479650311"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <small className="block text-neutral-500 font-mono uppercase mb-2">
-              LinkedIn
-            </small>
-            christian-david-479650311
-          </a>
-          <a
-            className="p-5 border border-neutral-800 rounded-xl text-neutral-200 hover:border-emerald-400 transition-colors"
-            href="https://github.com/DCE-code"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <small className="block text-neutral-500 font-mono uppercase mb-2">
-              GitHub
-            </small>
-            DCE-code
-          </a>
-          <a
-            className="text-emerald-400 text-sm mt-2"
             href="https://wa.me/2347015781293?text=Hello%20DCE%20Studio"
             target="_blank"
             rel="noreferrer"
           >
-            WhatsApp for DCE Studio clients &rarr;
+            <small>WhatsApp</small>
+            <span>Message DCE Studio</span>
+            <b aria-hidden="true">&#8599;</b>
           </a>
+          <p>Open to freelance projects and remote opportunities.</p>
         </Reveal>
       </div>
     </section>

@@ -1,45 +1,44 @@
 import Reveal from "./Reveal";
 
 const steps = [
-  ["01", "Understand", "Understand the users, requirements and goals."],
+  ["01", "Discover", "Understand the business, audience and project goals."],
+  ["02", "Plan", "Define structure, user flow and visual direction."],
+  ["03", "Design", "Create a clean and responsive interface."],
+  ["04", "Develop", "Build the experience with modern frontend technologies."],
   [
-    "02",
-    "Design",
-    "Plan structure, content hierarchy and responsive behavior.",
+    "05",
+    "Test & Launch",
+    "Test responsiveness, performance and functionality before deployment.",
   ],
-  ["03", "Build", "Develop reusable, responsive frontend components."],
-  ["04", "Test & Deploy", "Test across devices, fix issues and deploy."],
 ];
 
 export default function HowIBuild() {
   return (
-    <section id="process" className="py-24 px-6 md:px-12 bg-neutral-950">
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="mb-12">
-          <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
-            {"// Process"}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3">
-            A clear path from idea <span>to interface.</span>
-          </h2>
+    <section id="process" className="section process-section">
+      <div className="section-shell">
+        <Reveal className="section-heading">
+          <div>
+            <p className="section-kicker">A straightforward process</p>
+            <h2 className="section-title">
+              From first conversation <span>to launch.</span>
+            </h2>
+          </div>
+          <p className="section-description">
+            A clear sequence keeps the work collaborative and the decisions
+            grounded in the project goals.
+          </p>
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="process-grid">
           {steps.map(([number, title, description], index) => (
             <Reveal
               key={number}
               as="article"
-              delay={index * 90}
-              className="p-6 rounded-2xl border border-neutral-800 bg-neutral-900/50"
+              delay={index * 55}
+              className="process-step"
             >
-              <span className="text-3xl font-bold text-emerald-400">
-                {number}
-              </span>
-              <h3 className="text-xl font-bold text-white mt-10 mb-3">
-                {title}
-              </h3>
-              <p className="text-sm text-neutral-400 leading-relaxed">
-                {description}
-              </p>
+              <span className="process-step__number">{number}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
             </Reveal>
           ))}
         </div>

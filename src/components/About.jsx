@@ -2,46 +2,46 @@ import Reveal from "./Reveal";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 md:px-12 bg-neutral-950/70">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_.8fr] gap-12">
+    <section id="about" className="section about-section">
+      <div className="section-shell about-layout">
         <Reveal>
-          <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
-            {"// About me"}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3 mb-8">
-            Building with curiosity, <span>care, and code.</span>
+          <p className="section-kicker">A little about me</p>
+          <h2 className="section-title">
+            Thoughtful interfaces, <span>built around real needs.</span>
           </h2>
-          <div className="space-y-5 text-neutral-300 leading-relaxed">
+          <div className="about-copy">
             <p>
-              I&apos;m David Christian Ekene, a junior frontend developer
-              focused on building responsive websites, web applications and
-              modern user interfaces. I work primarily with HTML, CSS,
-              JavaScript, React and Vite, while using Git and GitHub throughout
-              my development workflow at DCE Studio.
+              <strong>David Christian Ekene</strong>
+              <br />
+              Frontend Developer &amp; Founder of DCE Studio
             </p>
             <p>
-              I&apos;ve built projects across e-commerce, real estate,
-              opportunity discovery and interactive web experiences. I&apos;m
-              currently looking for opportunities to grow within a professional
-              development team and contribute to real-world products.
+              I combine frontend development, UI/UX thinking, responsive web
+              design and graphic design awareness to create websites that feel
+              clear, credible and easy to use.
+            </p>
+            <p>
+              From business websites and landing pages to interactive React
+              experiences, I focus on the details that help a product
+              communicate well across devices and support the goals behind it.
             </p>
           </div>
+          <a className="text-link" href="#process">
+            More About Me <span aria-hidden="true">&rarr;</span>
+          </a>
         </Reveal>
-        <Reveal
-          as="aside"
-          delay={120}
-          className="p-7 border border-neutral-800 bg-neutral-900/60 rounded-2xl"
-        >
-          <span className="text-emerald-400 font-mono text-xs uppercase tracking-widest">
-            Education
-          </span>
-          <h3 className="text-2xl font-bold text-white mt-7">
-            Diploma in Frontend Development
-          </h3>
-          <p className="text-neutral-300 mt-3">DEEJOFT Coding School</p>
-          <div className="flex justify-between mt-8 pt-5 border-t border-neutral-800 text-sm text-neutral-400">
-            <span>2026</span>
-            <span>Credit</span>
+        <Reveal as="aside" delay={100} className="about-aside">
+          <span className="aside-label">How I contribute</span>
+          <ul>
+            <li>Frontend development</li>
+            <li>UI/UX thinking</li>
+            <li>Responsive web design</li>
+            <li>Business-focused websites</li>
+          </ul>
+          <div className="about-education">
+            <span className="aside-label">Education</span>
+            <strong>Diploma in Frontend Development</strong>
+            <span>DEEJOFT Coding School · 2026 · Credit</span>
           </div>
         </Reveal>
       </div>

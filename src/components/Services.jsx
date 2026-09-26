@@ -4,52 +4,67 @@ const services = [
   [
     "01",
     "Business Websites",
-    "Responsive websites for businesses and organizations.",
+    "Modern responsive websites for businesses that need a professional online presence.",
   ],
   [
     "02",
     "Landing Pages",
-    "Focused landing pages designed around clear user actions.",
+    "High-quality landing pages designed around clarity, usability and conversion.",
   ],
   [
     "03",
-    "Frontend Development",
-    "Interactive web interfaces using modern frontend technologies.",
+    "React Websites",
+    "Interactive frontend experiences built with React and modern JavaScript.",
   ],
   [
     "04",
-    "Portfolio Websites",
-    "Professional portfolio websites for individuals and creators.",
+    "Next.js Websites",
+    "Websites using Next.js architecture, routing, image optimization and deployment workflows.",
+  ],
+  [
+    "05",
+    "UI Implementation",
+    "Turning Figma and design concepts into responsive, production-ready interfaces.",
+  ],
+  [
+    "06",
+    "Website Redesign",
+    "Modernizing outdated websites with responsive layouts and a clearer user experience.",
   ],
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 md:px-12 bg-neutral-950">
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="mb-12">
-          <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
-            {"// DCE Studio"}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3">
-            Services for useful <span>websites.</span>
-          </h2>
+    <section id="services" className="section services-section">
+      <div className="section-shell">
+        <Reveal className="section-heading">
+          <div>
+            <p className="section-kicker">DCE Studio / What I build</p>
+            <h2 className="section-title">
+              Useful websites, <span>made with intent.</span>
+            </h2>
+          </div>
+          <p className="section-description">
+            From the first screen to the final responsive detail, each build is
+            shaped around what the business and its visitors need.
+          </p>
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="services-grid">
           {services.map(([number, title, description], index) => (
             <Reveal
               key={number}
               as="article"
-              delay={index * 90}
-              className="p-7 rounded-2xl bg-neutral-900/60 border border-neutral-800"
+              delay={index * 55}
+              className="service-item"
             >
-              <span className="text-emerald-400 font-mono text-xs">
-                {number}
+              <span className="service-number">{number}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <span className="service-arrow" aria-hidden="true">
+                &#8599;
               </span>
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">
-                {title}
-              </h3>
-              <p className="text-neutral-400 leading-relaxed">{description}</p>
             </Reveal>
           ))}
         </div>

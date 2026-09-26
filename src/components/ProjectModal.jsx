@@ -1,20 +1,27 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProjectModal({ project, onClose }) {
+  const closeButtonRef = useRef(null);
+
   useEffect(() => {
     if (!project) return undefined;
+    const previousFocus = document.activeElement;
     const handleKeyDown = (event) => event.key === "Escape" && onClose();
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    closeButtonRef.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus?.();
+    };
   }, [onClose, project]);
 
   return (
     <AnimatePresence>
       {project && (
         <motion.div
-          className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+          className="modal-backdrop"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -22,7 +29,7 @@ export default function ProjectModal({ project, onClose }) {
           onClick={onClose}
         >
           <motion.div
-            className="modal-panel relative w-full max-w-2xl rounded-2xl border p-5 shadow-2xl sm:p-7"
+            className="modal-panel"
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
@@ -32,84 +39,99 @@ export default function ProjectModal({ project, onClose }) {
             aria-labelledby="project-modal-title"
           >
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 rounded-lg p-2 text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-white"
+              className="modal-close"
               aria-label="Close project details"
             >
-              <span aria-hidden="true" className="text-xl leading-none">
-                &times;
-              </span>
+              <span aria-hidden="true">&times;</span>
             </button>
             {project.image && (
-              <div className="mb-6 aspect-video overflow-hidden rounded-xl border border-slate-700/50">
+              <div className="modal-image">
                 <img
                   src={project.image}
-                  alt={`${project.title} project preview by David Christian Ekene`}
-                  className="h-full w-full object-cover"
+                  alt={`${project.title} project preview`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             )}
-            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-emerald-400">
-              {project.category} / Case study
-            </p>
-            <h2
-              id="project-modal-title"
-              className="mb-4 pr-8 text-3xl font-bold text-white"
-            >
-              {project.title}
-            </h2>
-            <p className="mb-6 leading-relaxed text-neutral-300">
+            <p className="modal-kicker">{project.category} / Case study</p>
+            <h2 id="project-modal-title">{project.title}</h2>
+            <p className="modal-lede">
               {project.caseStudy?.overview || project.description}
             </p>
-            {project.caseStudy && (
-              <div className="grid gap-5 text-sm text-neutral-300">
-                {[
-                  ["Problem", project.caseStudy.problem],
-                  ["My role", project.caseStudy.role],
-                  ["Challenges", project.caseStudy.challenges],
-                  ["Solution", project.caseStudy.solution],
-                  ["Result", project.caseStudy.result],
-                ].map(([label, value]) => (
-                  <div key={label}>
-                    <h3 className="mb-1 text-xs font-mono uppercase tracking-widest text-emerald-400">
-                      {label}
-                    </h3>
-                    <p className="leading-relaxed">{value}</p>
-                  </div>
-                ))}
-                <div>
-                  <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-emerald-400">
-                    Key features
-                  </h3>
-                  <ul className="list-disc space-y-1 pl-5">
-                    {project.caseStudy.features.map((feature) => (
+            <dl className="case-study-grid">
+              <div>
+                <dt>Challenge</dt>
+                <dd>{project.caseStudy?.challenge || project.description}</dd>
+              </div>
+              <div>
+                <dt>Design Direction</dt>
+                <dd>
+                  {project.caseStudy?.designDirection ||
+                    "A clear, responsive interface shaped around the project content."}
+                </dd>
+              </div>
+              <div>
+                <dt>Development</dt>
+                <dd>
+                  {project.caseStudy?.development ||
+                    "Frontend implementation using the technologies listed below."}
+                </dd>
+              </div>
+              <div>
+                <dt>Key Features</dt>
+                <dd>
+                  <ul className="modal-features">
+                    {(project.caseStudy?.features || []).map((feature) => (
                       <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                </div>
+                </dd>
               </div>
-            )}
-            <div className="flex flex-wrap gap-2">
+              <div>
+                <dt>Technology</dt>
+                <dd>{project.techStack?.join(" · ")}</dd>
+              </div>
+              <div>
+                <dt>Outcome</dt>
+                <dd>
+                  {project.caseStudy?.outcome ||
+                    "A responsive project interface published as a live demo."}
+                </dd>
+              </div>
+            </dl>
+            <div className="modal-tech" aria-label="Technology">
               {project.techStack?.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-neutral-700 bg-neutral-800 px-3 py-1 text-xs text-neutral-300"
-                >
+                <span key={tech} className="tech-badge">
                   {tech}
                 </span>
               ))}
             </div>
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button button-primary mt-6"
-              >
-                Live Demo &rarr;
-              </a>
-            )}
+            <div className="modal-actions">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-primary"
+                >
+                  Live Demo <span aria-hidden="true">&#8599;</span>
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-secondary"
+                >
+                  GitHub Repository <span aria-hidden="true">&#8599;</span>
+                </a>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       )}

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Navbar({ onOpenRecruiter }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("projects");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -37,66 +37,68 @@ export default function Navbar({ onOpenRecruiter }) {
   }, []);
 
   const navLinks = [
+    { name: "Work", href: "#projects" },
+    { name: "Services", href: "#services" },
     { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`site-nav ${scrolled ? "site-nav--scrolled" : ""}`}>
-      <div className="site-nav__inner">
-        <a
-          href="#top"
-          className="flex items-center gap-3 group"
-          aria-label="DCE Studio home"
-        >
-          <div className="brand-mark">
-            <img
-              src="/Brand%20logo.png"
-              alt="DCE Studio logo"
-              width="40"
-              height="40"
-            />
-          </div>
-          <div className="brand-copy">
-            <span>DCE STUDIO</span>
-            <span>Junior Frontend Developer</span>
-          </div>
-        </a>
-
-        <nav className="site-nav__links" aria-label="Primary navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={`site-nav__link ${activeSection === link.href.slice(1) ? "site-nav__link--active" : ""}`}
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
-
-        <div className="site-nav__actions">
-          <button
-            onClick={onOpenRecruiter}
-            className="nav-cv"
-            type="button"
-            data-magnetic
-          >
-            Download CV
-          </button>
+    <header className="site-header">
+      <div className="availability-bar">
+        <div className="availability-bar__inner">
+          <p>
+            <span className="status-dot" /> Available for freelance &amp; remote
+            web projects
+          </p>
+          <span className="availability-bar__stack">
+            React <i /> Next.js <i /> JavaScript <i /> Tailwind CSS
+          </span>
+          <a href="#contact">
+            Let&apos;s work together <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
-
-        <div className="mobile-actions">
+      </div>
+      <div className={`site-nav ${scrolled ? "site-nav--scrolled" : ""}`}>
+        <div className="site-nav__inner">
+          <a href="#top" className="brand" aria-label="DCE Studio home">
+            <span className="brand-mark">
+              <img src="/Brand%20logo.png" alt="" width="40" height="40" />
+            </span>
+            <span className="brand-copy">
+              <strong>DCE Studio</strong>
+              <small>David Christian Ekene</small>
+            </span>
+          </a>
+          <nav className="site-nav__links" aria-label="Primary navigation">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                aria-current={
+                  activeSection === link.href.slice(1) ? "location" : undefined
+                }
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+          <div className="site-nav__actions">
+            <button onClick={onOpenRecruiter} className="nav-cv" type="button">
+              View CV
+            </button>
+            <a href="#contact" className="button button-primary nav-start">
+              Start a Project <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
           <button
-            type="button"
             onClick={onOpenRecruiter}
             className="nav-cv nav-cv--mobile"
-            aria-label="View or download CV"
-            title="View or download CV"
+            type="button"
+            aria-label="View CV"
+            title="View CV"
           >
             CV
           </button>
@@ -108,50 +110,44 @@ export default function Navbar({ onOpenRecruiter }) {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
           >
-            <span className="menu-toggle__line menu-toggle__line--top" />
-            <span className="menu-toggle__line menu-toggle__line--middle" />
-            <span className="menu-toggle__line menu-toggle__line--bottom" />
+            <span />
+            <span />
           </button>
         </div>
-      </div>
-
-      <AnimatePresence initial={false}>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="mobile-menu mobile-menu--open"
-            id="mobile-navigation"
-          >
-            <nav className="mobile-menu__links" aria-label="Mobile navigation">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMobileMenu}
-                  className="mobile-menu__link"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-            <div className="mobile-menu__footer">
-              <button
-                onClick={() => {
-                  closeMobileMenu();
-                  onOpenRecruiter();
-                }}
-                className="button button-primary"
-                type="button"
+        <AnimatePresence initial={false}>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.22 }}
+              className="mobile-menu"
+              id="mobile-navigation"
+            >
+              <nav
+                className="mobile-menu__links"
+                aria-label="Mobile navigation"
               >
-                Download CV
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {navLinks.map((link) => (
+                  <a key={link.name} href={link.href} onClick={closeMobileMenu}>
+                    {link.name}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                ))}
+              </nav>
+              <div className="mobile-menu__actions">
+                <a
+                  href="#contact"
+                  onClick={closeMobileMenu}
+                  className="button button-primary"
+                >
+                  Start a Project <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </header>
   );
 }

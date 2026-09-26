@@ -3,63 +3,81 @@ import Reveal from "./Reveal";
 const groups = [
   {
     title: "Frontend",
-    description: "The tools I use to build responsive interfaces.",
-    skills: ["HTML5", "CSS3", "JavaScript", "React", "Vite"],
-  },
-  {
-    title: "Programming",
-    description: "A practical foundation for web application work.",
-    skills: ["Python"],
+    description: "Core technologies for responsive, interactive websites.",
+    skills: [
+      ["React", "Reusable interfaces and component-based UI."],
+      ["JavaScript", "Modern browser interactions and application logic."],
+      ["HTML5", "Semantic structure and accessible content."],
+      ["CSS3", "Responsive layouts, visual systems and motion."],
+      ["Tailwind CSS", "Utility-first styling for consistent interfaces."],
+      ["Next.js", "Building production projects with Next.js."],
+    ],
   },
   {
     title: "Tools",
-    description: "The workflow around building, testing, and shipping.",
-    skills: ["Git", "GitHub", "VS Code", "Vercel"],
+    description: "A practical workflow for building and shipping projects.",
+    skills: [
+      ["Git", "Version control for everyday development."],
+      ["GitHub", "Project hosting and source control."],
+      ["VS Code", "Primary code editor."],
+      ["Vercel", "Frontend project deployment."],
+    ],
   },
   {
     title: "Design",
-    description: "Visual tools that support clearer product thinking.",
-    skills: ["Figma", "Canva"],
+    description:
+      "Design awareness that helps interfaces feel considered and usable.",
+    skills: [
+      ["UI/UX", "Clear hierarchy and predictable user flows."],
+      ["Responsive Design", "Layouts that adapt across screen sizes."],
+      ["Graphic Design", "Visual communication and composition."],
+      ["Figma Implementation", "Translating design concepts into working UI."],
+    ],
   },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="py-24 px-6 md:px-12 relative bg-neutral-950"
-    >
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="mb-12">
-          <span className="text-emerald-400 font-mono text-sm uppercase tracking-widest">
-            {"// Toolkit"}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3">
-            Tools for thoughtful <span>frontend work.</span>
-          </h2>
+    <section id="skills" className="section skills-section">
+      <div className="section-shell">
+        <Reveal className="section-heading">
+          <div>
+            <p className="section-kicker">Technology / Toolkit</p>
+            <h2 className="section-title">
+              The tools behind <span>the work.</span>
+            </h2>
+          </div>
+          <p className="section-description">
+            A practical frontend toolkit, with design awareness and a focus on
+            responsive, maintainable interfaces.
+          </p>
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="skills-grid">
           {groups.map((group, index) => (
             <Reveal
               key={group.title}
               as="article"
-              delay={index * 70}
-              className="p-7 rounded-2xl bg-neutral-900/60 border border-neutral-800"
+              delay={index * 65}
+              className="skill-group"
             >
-              <h3 className="text-xl font-bold text-white mb-2">
-                {group.title}
-              </h3>
-              <p className="text-neutral-400 text-sm mb-6">
-                {group.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
+              <h3>{group.title}</h3>
+              <p className="skill-group__description">{group.description}</p>
+              <div className="skill-list">
+                {group.skills.map(([skill, description]) => (
+                  <div
+                    className={`skill-item ${skill === "Next.js" ? "skill-item--next" : ""}`}
                     key={skill}
-                    className="px-3 py-2 rounded-lg border border-neutral-700 text-sm text-neutral-200"
                   >
-                    {skill}
-                  </span>
+                    <strong>{skill}</strong>
+                    <p>{description}</p>
+                    {skill === "Next.js" && (
+                      <small>
+                        App Router · file-based routing · next/link · next/image
+                        · Server Components concepts · responsive image
+                        optimization · Vercel deployment
+                      </small>
+                    )}
+                  </div>
                 ))}
               </div>
             </Reveal>

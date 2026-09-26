@@ -1,102 +1,91 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-
 export default function Hero() {
-  const backgroundRef = useRef(null);
-
-  useEffect(() => {
-    const background = backgroundRef.current;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (
-      !background ||
-      reduceMotion.matches ||
-      window.matchMedia("(pointer: coarse)").matches
-    )
-      return undefined;
-
-    let frame = 0;
-    const handlePointerMove = (event) => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const x = (event.clientX / window.innerWidth - 0.5) * 8;
-        const y = (event.clientY / window.innerHeight - 0.5) * 5;
-        background.style.setProperty("--parallax-x", `${x}px`);
-        background.style.setProperty("--parallax-y", `${y}px`);
-      });
-    };
-
-    window.addEventListener("pointermove", handlePointerMove, {
-      passive: true,
-    });
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("pointermove", handlePointerMove);
-    };
-  }, []);
-
   return (
-    <section className="hero-section" aria-labelledby="hero-title">
-      <div ref={backgroundRef} className="hero-background" aria-hidden="true">
-        <div className="hero-particles" />
-      </div>
+    <section className="hero-section" aria-labelledby="hero-title" id="home">
+      <div className="hero-grid" aria-hidden="true" />
       <div className="hero-copy">
-        <div className="hero-reveal hero-reveal--eyebrow eyebrow">
-          <span className="status-dot" /> DCE Studio / Personal developer brand
-        </div>
-        <h1
-          id="hero-title"
-          className="hero-reveal hero-reveal--title hero-title"
-        >
-          Frontend Developer Building <span>Modern Digital Experiences.</span>
-        </h1>
-        <p className="hero-reveal hero-reveal--description hero-subtitle">
-          Frontend developer focused on clean interfaces, responsive
-          experiences, and modern web applications using JavaScript, React and
-          modern frontend tools.
+        <p className="hero-eyebrow">
+          <span>David Christian Ekene</span>
+          <i /> Frontend Developer <i /> Web Designer <i /> Digital Creator
         </p>
-        <div className="hero-reveal hero-reveal--actions hero-actions">
-          <a href="#projects" className="button button-primary" data-magnetic>
-            Explore Projects <span aria-hidden="true">&rarr;</span>
+        <h1 id="hero-title" className="hero-title">
+          I build fast, modern websites that help businesses look credible and{" "}
+          <span>turn visitors into customers.</span>
+        </h1>
+        <p className="hero-subtitle">
+          Frontend developer and founder of DCE Studio, focused on building
+          responsive, high-performance websites with React, JavaScript, Tailwind
+          CSS, and Next.js.
+        </p>
+        <div className="hero-actions">
+          <a href="#contact" className="button button-primary">
+            Start a Project <span aria-hidden="true">&rarr;</span>
           </a>
-          <a href="#contact" className="button button-secondary" data-magnetic>
-            Let&apos;s Work Together
+          <a href="#projects" className="button button-secondary">
+            View My Work <span aria-hidden="true">&darr;</span>
           </a>
         </div>
-        <div className="scroll-cue" aria-hidden="true">
-          <span>Scroll</span>
-          <div className="scroll-cue__line">
-            <motion.div
-              animate={{ y: [0, 18, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="scroll-cue__dot"
-            />
+        <a
+          className="hero-audit"
+          href="mailto:davchristian293@gmail.com?subject=Free%20website%20audit"
+        >
+          Get a Free Website Audit <span aria-hidden="true">&rarr;</span>
+        </a>
+        <div
+          className="hero-tech"
+          aria-label="Technologies: React, JavaScript, Next.js, Tailwind CSS"
+        >
+          <span>React</span>
+          <i /> <span>JavaScript</span>
+          <i /> <span>Next.js</span>
+          <i /> <span>Tailwind CSS</span>
+        </div>
+      </div>
+      <div className="hero-visual">
+        <figure className="hero-portrait">
+          <img
+            src="/file_00000000034c71f4a5b920ea5cf24f48.png"
+            alt="David Christian Ekene"
+            width="1080"
+            height="1440"
+            fetchPriority="high"
+            decoding="async"
+            className="hero-portrait__image"
+          />
+          <figcaption>
+            <span>Independent developer / DCE Studio</span>
+            <span>Ibadan, NG</span>
+          </figcaption>
+        </figure>
+        <div
+          className="code-window"
+          aria-label="A small preview of a responsive React component"
+        >
+          <div className="code-window__bar">
+            <span />
+            <span />
+            <span />
+            <small>responsive-ui.jsx</small>
+          </div>
+          <pre>
+            <code>
+              <span className="code-muted">01</span>{" "}
+              <b>export default function</b> Hero() &#123;{"\n"}
+              <span className="code-muted">02</span> <em>return</em> (&lt;main
+              className=<strong>&quot;responsive&quot;</strong>&gt;{"\n"}
+              <span className="code-muted">03</span> &lt;h1&gt;Built for
+              people.&lt;/h1&gt;{"\n"}
+              <span className="code-muted">04</span> &lt;/main&gt;);{"\n"}
+              <span className="code-muted">05</span> &#125;
+            </code>
+          </pre>
+          <div className="code-window__status">
+            <span>
+              <i /> Live preview
+            </span>
+            <span>React / UI</span>
           </div>
         </div>
       </div>
-      <motion.figure
-        className="hero-portrait"
-        initial={{ opacity: 0, x: 36 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <img
-          src="/file_00000000034c71f4a5b920ea5cf24f48.png"
-          alt="David Christian Ekene"
-          width="1080"
-          height="1440"
-          fetchPriority="high"
-          decoding="async"
-          className="hero-portrait__image"
-        />
-        <div
-          className="hero-portrait__wash absolute inset-0"
-          aria-hidden="true"
-        />
-        <figcaption>
-          <span>Available for junior frontend opportunities</span>
-          <span>01 / 01</span>
-        </figcaption>
-      </motion.figure>
     </section>
   );
 }
