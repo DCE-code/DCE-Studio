@@ -149,7 +149,7 @@ const projectsData = [
     techStack: ["JavaScript", "UI/UX", "Responsive Design"],
     image:
       "calculator.jpeg",
-    liveUrl: "https://calculator-snowy.vercel.app/",
+    liveUrl: "https://caculator-snowy.vercel.app/",
     caseStudy: {
       overview:
         "A advanced calculator application with AI features.",
